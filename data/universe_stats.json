@@ -1,0 +1,42 @@
+{
+  "source_url": "https://huggingface.co/datasets/vivekkopthsd/cfpb-consumer-complaints/resolve/main/complaints.parquet",
+  "source_page": "https://huggingface.co/datasets/vivekkopthsd/cfpb-consumer-complaints",
+  "source_as_of": "2026-08-11",
+  "source_rows": 17021062,
+  "sha256": "db7e86ef73872d4338fcd9c93ab72a67419128400ad91e81a59ca2e04865cc0a",
+  "filters": {
+    "date_received_start": "2024-01-01",
+    "date_received_end_exclusive": "2024-04-01",
+    "min_narrative_chars": 40,
+    "excluded_product_prefix": "Credit reporting",
+    "excluded_products": [
+      "Debt or credit management"
+    ],
+    "train_end_exclusive": "2024-03-01"
+  },
+  "universe_rows": 78200,
+  "missing_text_rows": 34951,
+  "missing_text_rate": 0.446944,
+  "short_text_rows": 125,
+  "modeling_rows": 43124,
+  "train_rows": 26242,
+  "test_rows": 16882,
+  "duplicate_complaint_id_rate": 0.0,
+  "duplicate_narrative_rate": 0.101243,
+  "excluded_credit_reporting_rows_with_text": 109166,
+  "excluded_debt_or_credit_management_rows_with_text": 311,
+  "submitted_via_in_sample": {
+    "Web": 43124
+  },
+  "class_counts": {
+    "Debt collection": 15076,
+    "Credit card": 9264,
+    "Checking or savings account": 6601,
+    "Mortgage": 3135,
+    "Money transfer, virtual currency, or money service": 2490,
+    "Student loan": 2307,
+    "Vehicle loan or lease": 1875,
+    "Payday loan, title loan, personal loan, or advance loan": 1306,
+    "Prepaid card": 1070
+  }
+}
