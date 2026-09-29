@@ -1,0 +1,103 @@
+{
+  "universe_rows": 78200,
+  "missing_text_rows": 34951,
+  "missing_text_rate": 0.446944,
+  "missing_text_definition": "Share of the date-and-product universe whose narrative is null or blank, before the 40-character modeling filter.",
+  "modeling_rows": 43124,
+  "rows_after_narrative_dedup": 38758,
+  "modeling_missing_text_rate": 0.0,
+  "duplicate_complaint_id_rate": 0.0,
+  "duplicate_narrative_rate": 0.101243,
+  "duplicate_narrative_definition": "One minus the number of distinct narratives divided by modeling rows. Complaint ids in this extract are unique.",
+  "class_balance": {
+    "Debt collection": {
+      "count": 15076,
+      "share": 0.349597
+    },
+    "Credit card": {
+      "count": 9264,
+      "share": 0.214822
+    },
+    "Checking or savings account": {
+      "count": 6601,
+      "share": 0.15307
+    },
+    "Mortgage": {
+      "count": 3135,
+      "share": 0.072697
+    },
+    "Money transfer, virtual currency, or money service": {
+      "count": 2490,
+      "share": 0.05774
+    },
+    "Student loan": {
+      "count": 2307,
+      "share": 0.053497
+    },
+    "Vehicle loan or lease": {
+      "count": 1875,
+      "share": 0.043479
+    },
+    "Payday loan, title loan, personal loan, or advance loan": {
+      "count": 1306,
+      "share": 0.030285
+    },
+    "Prepaid card": {
+      "count": 1070,
+      "share": 0.024812
+    }
+  },
+  "class_balance_after_dedup": {
+    "Debt collection": {
+      "count": 12155,
+      "share": 0.313613
+    },
+    "Credit card": {
+      "count": 7851,
+      "share": 0.202565
+    },
+    "Checking or savings account": {
+      "count": 6591,
+      "share": 0.170055
+    },
+    "Mortgage": {
+      "count": 3132,
+      "share": 0.080809
+    },
+    "Money transfer, virtual currency, or money service": {
+      "count": 2488,
+      "share": 0.064193
+    },
+    "Student loan": {
+      "count": 2307,
+      "share": 0.059523
+    },
+    "Vehicle loan or lease": {
+      "count": 1864,
+      "share": 0.048093
+    },
+    "Payday loan, title loan, personal loan, or advance loan": {
+      "count": 1303,
+      "share": 0.033619
+    },
+    "Prepaid card": {
+      "count": 1067,
+      "share": 0.02753
+    }
+  },
+  "train_rows": 24851,
+  "test_rows": 13907,
+  "submitted_via_in_sample": {
+    "Web": 43124
+  },
+  "channel_note": "Every narrative in this window was submitted via Web, so channel is not a feature.",
+  "weak_slice": {
+    "name": "product:Payday loan, title loan, personal loan, or advance loan",
+    "definition": "Test complaints whose true product is Payday loan, title loan, personal loan, or advance loan.",
+    "n": 514,
+    "accuracy": 0.675097,
+    "overall_accuracy": 0.824693,
+    "accuracy_gap": 0.149596,
+    "selection_rule": "Lowest accuracy among predefined slices with at least 200 test rows."
+  }
+}

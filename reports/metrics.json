@@ -1,0 +1,145 @@
+{
+  "label": "product",
+  "label_definition": "The label is the Product value the consumer filed with the CFPB. It is the product line a helpdesk would route the complaint to. The model does not see product, sub-product, issue, company, or the company's response.",
+  "split": {
+    "method": "chronological",
+    "train_start": "2024-01-01",
+    "train_end_exclusive": "2024-03-01",
+    "test_start": "2024-03-01",
+    "test_end_exclusive": "2024-04-01",
+    "train_rows": 24851,
+    "test_rows": 13907,
+    "extract_rows": 43124,
+    "rows_after_narrative_dedup": 38758
+  },
+  "features": {
+    "text": "TF-IDF word unigrams and bigrams, min_df=4, max_features=5000, sublinear_tf",
+    "structured": [
+      "state (levels with at least 200 training rows, plus UNK and OTHER)",
+      "weekday of date_received",
+      "date_missing",
+      "tag_servicemember",
+      "tag_older",
+      "text_chars and text_words, max-abs scaled on the training split"
+    ],
+    "not_used": [
+      "company",
+      "sub_product",
+      "issue",
+      "sub_issue",
+      "company_response",
+      "timely_response",
+      "submitted_via (constant Web in this extract)",
+      "month (the test month is entirely after training)"
+    ]
+  },
+  "models": {
+    "logistic_regression": {
+      "accuracy": 0.824693,
+      "precision_macro": 0.764021,
+      "recall_macro": 0.802239,
+      "f1_macro": 0.779676,
+      "roc_auc_ovr_macro": 0.972869,
+      "params": {
+        "solver": "saga",
+        "C": 1.0,
+        "max_iter": 200,
+        "class_weight": "balanced",
+        "random_state": 42
+      },
+      "per_class_f1": {
+        "Checking or savings account": 0.803181,
+        "Credit card": 0.81988,
+        "Debt collection": 0.902305,
+        "Money transfer, virtual currency, or money service": 0.690871,
+        "Mortgage": 0.885154,
+        "Payday loan, title loan, personal loan, or advance loan": 0.569787,
+        "Prepaid card": 0.724138,
+        "Student loan": 0.901252,
+        "Vehicle loan or lease": 0.720513
+      }
+    },
+    "linear_svc": {
+      "accuracy": 0.820163,
+      "precision_macro": 0.768907,
+      "recall_macro": 0.773052,
+      "f1_macro": 0.770604,
+      "roc_auc_ovr_macro": null,
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced",
+        "dual": "auto"
+      },
+      "per_class_f1": {
+        "Checking or savings account": 0.792874,
+        "Credit card": 0.812362,
+        "Debt collection": 0.900121,
+        "Money transfer, virtual currency, or money service": 0.655574,
+        "Mortgage": 0.8829,
+        "Payday loan, title loan, personal loan, or advance loan": 0.565258,
+        "Prepaid card": 0.718023,
+        "Student loan": 0.907317,
+        "Vehicle loan or lease": 0.701003
+      }
+    },
+    "complement_nb": {
+      "accuracy": 0.747825,
+      "precision_macro": 0.783655,
+      "recall_macro": 0.629042,
+      "f1_macro": 0.651511,
+      "roc_auc_ovr_macro": 0.941712,
+      "params": {
+        "alpha": 0.5
+      },
+      "per_class_f1": {
+        "Checking or savings account": 0.742046,
+        "Credit card": 0.694822,
+        "Debt collection": 0.833891,
+        "Money transfer, virtual currency, or money service": 0.461916,
+        "Mortgage": 0.805867,
+        "Payday loan, title loan, personal loan, or advance loan": 0.191453,
+        "Prepaid card": 0.620818,
+        "Student loan": 0.836294,
+        "Vehicle loan or lease": 0.676495
+      }
+    },
+    "random_forest": {
+      "accuracy": 0.775077,
+      "precision_macro": 0.761075,
+      "recall_macro": 0.683213,
+      "f1_macro": 0.712295,
+      "roc_auc_ovr_macro": 0.952403,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 18,
+        "min_samples_leaf": 5,
+        "class_weight": "balanced_subsample",
+        "features": "80-component truncated SVD of TF-IDF plus the structured block"
+      },
+      "per_class_f1": {
+        "Checking or savings account": 0.735786,
+        "Credit card": 0.761333,
+        "Debt collection": 0.871817,
+        "Money transfer, virtual currency, or money service": 0.565815,
+        "Mortgage": 0.797127,
+        "Payday loan, title loan, personal loan, or advance loan": 0.491429,
+        "Prepaid card": 0.697183,
+        "Student loan": 0.829847,
+        "Vehicle loan or lease": 0.660317
+      }
+    }
+  },
+  "winner": "logistic_regression",
+  "winner_rule": "Highest macro-F1 on the March 2024 holdout. Ties break on macro OVR ROC-AUC, then accuracy.",
+  "winner_per_class_f1": {
+    "Checking or savings account": 0.803181,
+    "Credit card": 0.81988,
+    "Debt collection": 0.902305,
+    "Money transfer, virtual currency, or money service": 0.690871,
+    "Mortgage": 0.885154,
+    "Payday loan, title loan, personal loan, or advance loan": 0.569787,
+    "Prepaid card": 0.724138,
+    "Student loan": 0.901252,
+    "Vehicle loan or lease": 0.720513
+  }
+}
