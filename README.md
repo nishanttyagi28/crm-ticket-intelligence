@@ -1,6 +1,6 @@
 # CRM ticket intelligence
 
-Live demo: https://crm-ticket-intelligence.vercel.app
+Live demo: https://crm-ticket-intelligence.vercel.app/docs (API docs; the root path has no page)
 
 Personal project. The problem is the one a CRM helpdesk has (a Zoho Desk-like problem): read an incoming complaint, route it to a product line, and keep an eye on whether the mix of tickets still looks like the data the model was trained on.
 
